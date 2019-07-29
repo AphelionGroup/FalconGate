@@ -1,6 +1,6 @@
 # FalconGate
 
-A smart gateway to stop Malware, cyber criminals, and more...
+A smart gateway to stop Malware, cyber criminals, and more....
 
 ## Motivation
 
