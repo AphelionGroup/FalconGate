@@ -78,18 +78,6 @@ if (isset($_POST['selector'])){
             $config->set('main', 'mailer_pwd', $_POST['mailer_pwd']);
         }
 		$config->set('main', 'telegram_id', '');
-	}elseif($_POST['selector'] == 'cloud'){	
-		$config->set('main', 'mailer_mode', $_POST['selector']);
-		if (isset($_POST['telegram_id'])){
-			$config->set('main', 'telegram_id', $_POST['telegram_id']);
-			$config->set('main', 'mailer_address', '');
-			$config->set('main', 'mailer_pwd', '');
-		}
-    }else{
-        $config->set('main', 'mailer_mode', $_POST['selector']);
-        $config->set('main', 'mailer_address', '');
-        $config->set('main', 'mailer_pwd', '');
-		$config->set('main', 'telegram_id', '');
     }
 }
 $config->save();

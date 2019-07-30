@@ -13,10 +13,7 @@ require 'templates/header.html';
 ?>
 <h1>Configuration</h1>
 
-<?php
-require_once 'Config/Lite.php';
-$config = new Config_Lite('user_config.ini');
-
+<script type='text/javascript'>
 function torAlert() {
     if (document.getElementById('allow_tor').checked) {
         alert("Are you sure you want to allow Tor in your network? Malware can use Tor to hide its traffic!");
@@ -37,6 +34,11 @@ function cloudScanAlert() {
 }
 
 </script>
+
+<?php
+require_once 'Config/Lite.php';
+$config = new Config_Lite('user_config.ini');
+?>
 
 <?php
     if ($config['main']['cloud_malware_sandbox'] == 'true'){
@@ -63,9 +65,7 @@ function cloudScanAlert() {
            </table>
            <br>');
     echo ('<p class=notes>Note: Multiple recipient emails can be added to the "Alerts recipients" field using commas as separator.</p>');
-    echo ('<br>
-           <input class="config_button" type="submit" value="Save" name="mailer_submit" id="mailer_submit">
-           </form>');
+    echo ('<br><input class="config_button" type="submit" value="Save" name="mailer_submit" id="mailer_submit"></form>');
 if (isset($_GET['updated'])){
     if ($_GET['updated'] == 'True'){
         echo ('<p>Configuration saved!</p>
