@@ -66,9 +66,9 @@ if (isset($_POST['allow_tor'])){
 }else{
     $config->set('main', 'allow_tor', 'false');
 }
-if (isset($_POST['selector'])){
-    if($_POST['selector'] == 'gmail'){
-        $config->set('main', 'mailer_mode', $_POST['selector']);
+if (isset($_POST['mailer_address'])){
+    if($_POST['selector'] == 'mailer_address'){
+        $config->set('main', 'mailer_mode', 'gmail');
         if (isset($_POST['mailer_address'])){
             $config->set('main', 'mailer_address', $_POST['mailer_address']);
         }
