@@ -19,21 +19,11 @@ $config = new Config_Lite('user_config.ini');
 
 function torAlert() {
     if (document.getElementById('allow_tor').checked) {
-        alert("Sure you want to allow Tor in your network? Malware can use Tor to hide its traffic!");
+        alert("Are you sure you want to allow Tor in your network? Malware can use Tor to hide its traffic!");
     }
 }
 
 function cloudScanAlert() {
-    var key = document.getElementById('fg_intel_key').value;
-    if(key.replace(/\s/g,"") == ""){
-        if (document.getElementById('enable_cloud_scan').checked == true){
-            alert("To enable this option you must first configure your FalconGate API key!");
-            document.getElementById('enable_cloud_scan').checked = false;
-            return false;
-        }else{
-            return true;
-        }
-    }
     if (document.getElementById('enable_cloud_scan').checked == false) {
         return true;
       } else {
@@ -46,17 +36,6 @@ function cloudScanAlert() {
       }
 }
 
-</script>
-
-<!-- Function to display hints to the users in alerts delivery configuration -->
-<script>
-$(document).ready(function () {
-    $('.para').hide();
-    $(".button").click(function () {
-        $('.para').hide();
-        $('#' + $(this).data('id')).show();
-    });
-});
 </script>
 
 <?php
