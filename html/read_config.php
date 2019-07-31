@@ -60,7 +60,6 @@ $config = new Config_Lite('user_config.ini');
            <tr align=left><td width=300 title="This is the list of email addresses to be monitored for potential compromise due to hacking breaches in third party online services.">Email watchlist:</td><td><textarea form="user_config" id="email_watchlist" name="email_watchlist" rows=5 cols=81>'.$config['main']['email_watchlist'].'</textarea></td></tr>
            <tr align=left><td width=300 title="Enter the Gmail address from where the FalconGate alerts will be send.">Gmail Address:</td><td><input type=text size=20 name="mailer_address" id="mailer_address" value='.$config['main']['mailer_address'].'></td></tr>
 		   <tr align=left><td width=300 title="Enter the password for Gmail address from where the FalconGate alerts will be send.">Gmail Password:</td><td><input type="password" name="mailer_pwd" id="mailer_pwd" size="20" maxlength="500"></td></tr>
-           <tr align=left><td width=300 title="Enable cloud based Malware scan of suspicious executables." colspan=2>Enable cloud based Malware scan <input type=checkbox name=enable_cloud_scan id=enable_cloud_scan value='.$cloud_scan_value.' onchange="cloudScanAlert()"</td></tr>
            <tr align=left><td width=300 title="Allow traffic towards the Tor network." colspan=2>Allow Tor <input type=checkbox name=allow_tor id=allow_tor value='.$tor_value.' onchange="torAlert()"</td></tr>
            </table>
            <br>');
