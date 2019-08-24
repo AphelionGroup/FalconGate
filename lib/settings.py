@@ -1,6 +1,7 @@
 import threading
 from lib.objects import *
 import sqlite3 as lite
+import redis
 
 
 def get_top_domains(dbname):

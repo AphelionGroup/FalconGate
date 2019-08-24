@@ -112,7 +112,7 @@ installRequirements() {
   echo "Installing software dependencies..."
   sleep 3
 
-  apt-get install cmake make gcc g++ flex bison libpcap-dev libssl-dev libffi-dev dialog python-dev swig zlib1g-dev libgeoip-dev build-essential libelf-dev dnsmasq nginx php-fpm php-curl ipset git python3-pip python3-venv dnscrypt-proxy nmap hydra -y
+  apt-get install cmake make gcc g++ flex bison libpcap-dev libssl-dev libffi-dev dialog python-dev swig zlib1g-dev libgeoip-dev build-essential libelf-dev dnsmasq nginx php-fpm php-curl ipset git redis-server python3-pip python3-venv dnscrypt-proxy nmap hydra -y
 }
 
 
