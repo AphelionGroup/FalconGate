@@ -2,6 +2,7 @@ import threading
 from lib.objects import *
 import sqlite3 as lite
 import redis
+import json
 
 
 def get_top_domains(dbname):
@@ -19,6 +20,38 @@ def get_top_domains(dbname):
             pass
         return domains
 
+
+# Verify Redis objects and create if needed
+r = redis.Redis()
+if r.exists('falcongate-main') == 0:
+    r.hmset('falcongate-main', falcongate_main)
+
+if r.exists('dhcp-hosts') == 0:
+    r.hmset('dhcp-hosts', {'active': 1})
+
+if r.exists('dhcp-history') == 0:
+    r.hmset('dhcp-history', {'active': 1})
+
+if r.exists('user-ip-blacklist') == 0:
+    r.hmset('user-ip-blacklist', {'active': 1})
+
+if r.exists('user-ip-whitelist') == 0:
+    r.hmset('user-ip-whitelist', {'active': 1})
+
+if r.exists('user-domain-blacklist') == 0:
+    r.hmset('user-domain-blacklist', {'active': 1})
+
+if r.exists('user-domain-whitelist') == 0:
+    r.hmset('user-domain-whitelist', {'active': 1})
+
+if r.exists('fg-intel-creds') == 0:
+    r.hmset('fg-intel-creds', {'active': 1})
+
+if r.exists('fg-intel-ip') == 0:
+    r.hmset('fg-intel-ip', {'active': 1})
+
+if r.exists('fg-intel-domain') == 0:
+    r.hmset('fg-intel-domain', {'active': 1})
 
 # Global variables
 # Master network object

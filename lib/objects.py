@@ -1,5 +1,64 @@
 import collections
 from lib.logger import *
+import json
+
+bad_ips = {'Tor': [], 'Malware': [], 'Botnet': [], 'Hacking': [], 'Phishing': [], 'Ransomware': [],
+           'Ads': [], 'User': []}
+
+bad_domains = {'Tor': [], 'Malware': [], 'Botnet': [], 'Hacking': [], 'Phishing': [], 'Ransomware': [],
+               'Ads': [], 'Crypto-miners': [], 'User': []}
+
+target_mime_types = ["application/x-7z-compressed", "application/x-ace-compressed", "application/x-shockwave-flash",
+                     "application/pdf", "application/vnd.android.package-archive", "application/octet-stream",
+                     "application/x-bzip", "application/x-bzip2", "application/x-debian-package", "application/java-archive",
+                     "application/javascript", "application/x-msdownload", "application/x-ms-application", "application/vnd.ms-excel",
+                     "application/vnd.ms-excel.addin.macroenabled.12", "application/vnd.ms-excel.sheet.binary.macroenabled.12",
+                     "application/vnd.ms-excel.template.macroenabled.12", "application/vnd.ms-excel.sheet.macroenabled.12",
+                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                     "application/vnd.openxmlformats-officedocument.wordprocessingml.template", "application/vnd.ms-powerpoint.slide.macroenabled.12",
+                     "application/vnd.ms-powerpoint.presentation.macroenabled.12", "application/vnd.ms-powerpoint.slideshow.macroenabled.12",
+                     "application/vnd.ms-powerpoint.template.macroenabled.12", "application/msword", "application/vnd.ms-word.document.macroenabled.12",
+                     "application/vnd.ms-word.template.macroenabled.12", "application/x-rar-compressed", "application/x-tar", "application/zip", "application/x-dosexec",
+                     "application/x-ms-installer", "application/x-elf", "application/x-sh", "text/x-perl", "text/x-python", "image/x-icon", "application/x-executable"]
+
+tld_whitelist = ['local', 'test', 'localhost', 'example', 'invalid', 'arpa']
+# Malicious TLDs
+# https://www.tripwire.com/state-of-security/security-data-protection/cyber-security/most-suspicious-tlds-revealed-by-blue-coat-systems/
+# https://www.spamhaus.org/statistics/tlds/
+tld_blacklist = ['zip', 'review', 'country', 'kim', 'cricket', 'science', 'work', 'party', 'gq', 'link',
+                 'gdn', 'stream', 'download', 'top', 'us', 'study', 'click', 'biz']
+
+falcongate_main = {'pid': '', 'exe': '', 'args': '[]', 'interface': '', 'mac': '', 'ip': '', 'gateway': '',
+                   'netmask': '', 'cidr': '', 'bad-ips': json.dumps(bad_ips), 'bad-domains': json.dumps(bad_domains),
+                   'target-mime-types': json.dumps(target_mime_types), 'tld-whitelist': json.dumps(tld_whitelist),
+                   'tld-blacklist': json.dumps(tld_blacklist), 'vt-api-key': '', 'dst-emails': '[]',
+                   'email-watchlist': '[]', 'fg-intel-creds': '', 'fg-intel-ip': '', 'fg-intel-domain': '',
+                   'vt-api-domain-url': '', 'vt-api-ip-url': '', 'vt-api-file-url': '', 'hibp-api-url': '',
+                   'mailer-mode': '', 'mailer-address': '', 'mailer-pwd': '', 'allow-tor': '', 'last-alert-id': ''}
+
+dhcp_host = {'created': '', 'updated': '', 'mac': '', 'ip': '', 'hostname': '', 'vendor': '', 'os-family': '[]',
+             'device-family': '[]', 'user-agents': '[]', 'tcp-ports': '', 'udp-ports': '', 'vuln-accounts': ''}
+
+dhcp_history = {'lseen': '', 'mac': '', 'ip': '', 'hostname': ''}
+
+conn_event = {'fseen': '', 'lseen': '', 'proto': '', 'cip': '', 'sip': '', 'dport': '', 'lclient': '', 'lserver': '',
+              'psent': '', 'preceived': '', 'bsent': '', 'breceived': '', 'duration': '', 'lstate': '', 'bad': '',
+              'counter': ''}
+
+dns_event = {'fseen': '', 'lseen': '', 'proto': '', 'query': '', 'sld': '', 'tld': '', 'cip': '', 'sip': '',
+             'dport': '', 'qtype': '', 'rcode': '', 'bad': '', 'counter': ''}
+
+http_event = {'fseen': '', 'lseen': '', 'proto': '', 'query': '', 'sld': '', 'tld': '', 'cip': '', 'sip': '',
+              'dport': '', 'host': '', 'uri': '', 'url': '', 'query': '', 'method': '', 'uagent': '', 'referrer': '',
+              'scode': '', 'bsent': '', 'breceived': ''}
+
+ftp_event = {'fseen': '', 'lseen': '', 'proto': '', 'query': '', 'sld': '', 'tld': '', 'cip': '', 'sip': '',
+             'dport': '', 'user': '', 'password': '', 'mtype': '', 'fsize': '', 'command': '', 'arg': ''}
+
+file_event = {'fseen': '', 'thosts': '[]', 'rhosts': '[]', 'cuids': '', 'source': '', 'fsize': '', 'md5': '',
+              'sha1': ''}
+
+notice_event = {'fseen': '', 'proto': '', 'cip': '', 'sip': '', 'dport': '', 'note': '', 'msg': '', 'sub': ''}
 
 
 class HostAlertTemplate:
